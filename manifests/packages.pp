@@ -2,7 +2,7 @@
 # Debian and RHEL/CentOS.  Add other distributions as required.
 #
 class ssh::packages {
-	ssh::noop { "ssh/packages/installed": }
+	noop { "ssh/packages/installed": }
 
 	case $::operatingsystem {
 		RedHat,CentOS: {
@@ -17,6 +17,6 @@ class ssh::packages {
 	}
 
 	package { $ssh_package:
-		before => Ssh::Noop["ssh/packages/installed"];
+		before => Noop["ssh/packages/installed"];
 	}
 }

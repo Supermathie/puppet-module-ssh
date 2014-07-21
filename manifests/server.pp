@@ -6,9 +6,9 @@ define ssh::server($protocol_version  = 2,
                    $permit_root_login = "without-password") {
 	include ssh::packages
 
-	ssh::noop {
-		"ssh/server/installed":  require => Ssh::Noop["ssh/packages/installed"];
-		"ssh/server/configured": require => Ssh::Noop["ssh/server/installed"];
+	noop {
+		"ssh/server/installed":  require => Noop["ssh/packages/installed"];
+		"ssh/server/configured": require => Noop["ssh/server/installed"];
 	}
 
 	case $::operatingsystem {
@@ -56,6 +56,6 @@ define ssh::server($protocol_version  = 2,
 		enable    => true,
 		hasstatus => $ssh_hasstatus,
 		restart   => $ssh_restart,
-		subscribe => Ssh::Noop["ssh/server/configured"];
+		subscribe => Noop["ssh/server/configured"];
 	}
 }

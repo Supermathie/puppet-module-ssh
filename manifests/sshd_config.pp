@@ -143,7 +143,7 @@ define ssh::sshd_config($key    = $name,
 					AcceptEnv: {
 						exec {
 							"remove ${remove} from ${key}":
-								command => "sed -ri \"s/^(AcceptEnv\s)(.*\s)?(${remove}\s?)/\1\2/g\" /etc/ssh/sshd_config",
+								command => "sed -ri \"s/^(AcceptEnv\s)(.*\s)?(${remove}\s?)/\\1\\2/g\" /etc/ssh/sshd_config",
 								onlyif  => "grep 'AcceptEnv' /etc/ssh/sshd_config | grep \"${remove}\"",
 								notify  => Exec["${key}-${remove}-cleanup"];
 							"remove empty ${key} after ${remove}":

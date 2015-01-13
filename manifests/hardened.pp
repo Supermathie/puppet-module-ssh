@@ -8,7 +8,7 @@ class ssh::hardened {
 	   ($openssh_server_version_major == 6 and $openssh_server_version_minor < 4) {
 		warning "OpenSSH v6.4 or greater is required for hardening"
 	} else {
-		Ssh::Sshd_config {
+		Exec {
 			notify => Service["ssh"],
 		}
 

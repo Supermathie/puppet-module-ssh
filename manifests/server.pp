@@ -3,8 +3,13 @@
 define ssh::server($protocol_version  = 2,
                    $password_auth     = true,
                    $forward_x11       = false,
+                   $hardened          = false,
                    $permit_root_login = "without-password") {
 	include ssh::packages
+
+	if $hardened {
+		include ssh::hardened
+	}
 
 	noop {
 		"ssh/server/installed":  require => Noop["ssh/packages/installed"];

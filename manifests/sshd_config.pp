@@ -99,9 +99,9 @@ define ssh::sshd_config($key    = $name,
 			}
 		}
 		AuthorizedKeysFile,AuthorizedPrincipalsFile,Banner,Ciphers,ForceCommand,
-		HostCertificate,HostKey,ListenAddress,PermitOpen,PidFile,RevokedKeys,
-		AuthorizedKeysCommand,AuthorizedKeysCommandRunAs,TrustedUserCAKeys,
-		XAuthLocation: {
+		HostCertificate,HostKey,KexAlgorithms,ListenAddress,MACs,PermitOpen,
+		PidFile,RevokedKeys,AuthorizedKeysCommand,AuthorizedKeysCommandRunAs,
+		TrustedUserCAKeys,XAuthLocation: {
 			# FIXME: Validation
 			$multivalued = false
 		}

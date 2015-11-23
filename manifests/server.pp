@@ -25,7 +25,7 @@ define ssh::server($protocol_version  = 2,
 		Debian,Ubuntu: {
 			$ssh_service   = "ssh"
 			$ssh_hasstatus = false
-			$ssh_restart   = "service ssh reload",
+			$ssh_restart   = "service ssh reload"
 		}
 		default: {
 			fail("Unknown \$::operatingsystem '${::operatingsystem}'; please improve ssh::server")

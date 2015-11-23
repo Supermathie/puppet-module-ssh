@@ -8,11 +8,11 @@ class ssh::packages {
 		RedHat,CentOS: {
 			$ssh_package = "openssh"
 		}
-		Debian: {
+		Debian,Ubuntu: {
 			$ssh_package = "openssh-server"
 		}
 		default: {
-			fail("Unknown \$::operatingsystem; please improve ssh::packages")
+			fail("Unknown \$::operatingsystem '${::operatingsystem}; please improve ssh::packages")
 		}
 	}
 

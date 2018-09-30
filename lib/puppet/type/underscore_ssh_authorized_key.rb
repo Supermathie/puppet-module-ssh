@@ -37,7 +37,7 @@ module Puppet
 						@options = ""
 						@type, wsp, rest = str.split(/(\s+)/, 2)
 						until %w{ecdsa-sha2-nistp256 ecdsa-sha2-nistp384
-						         ecdsa-sha2-nistp521 ssh-dss ssh-rsa}.include? @type or rest.nil?
+						         ecdsa-sha2-nistp521 ssh-ed25519 ssh-dss ssh-rsa}.include? @type or rest.nil?
 							# The key type wasn't the key type, it was optionz!
 							@options += @type + wsp
 							@type, wsp, rest = rest.split(/(\s+)/, 2)

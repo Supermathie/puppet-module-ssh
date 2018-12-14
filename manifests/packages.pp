@@ -5,14 +5,14 @@ class ssh::packages {
 	noop { "ssh/packages/installed": }
 
 	case $::operatingsystem {
-		RedHat,CentOS: {
+		"RedHat", "CentOS": {
 			$ssh_package = "openssh"
 		}
-		Debian,Ubuntu: {
+		"Debian", "Ubuntu": {
 			$ssh_package = "openssh-server"
 		}
 		default: {
-			fail("Unknown \$::operatingsystem '${::operatingsystem}; please improve ssh::packages")
+			fail("Unsupported \$::operatingsystem '${::operatingsystem}'; please improve ssh::packages")
 		}
 	}
 

@@ -17,12 +17,12 @@ define ssh::server($protocol_version  = 2,
 	}
 
 	case $::operatingsystem {
-		RedHat,CentOS: {
+		"RedHat", "CentOS": {
 			$ssh_service   = "sshd"
 			$ssh_hasstatus = true
 			$ssh_restart   = "/sbin/service sshd reload"
 		}
-		Debian,Ubuntu: {
+		"Debian", "Ubuntu": {
 			$ssh_service   = "ssh"
 			$ssh_hasstatus = false
 			$ssh_restart   = "service ssh reload"
@@ -34,24 +34,24 @@ define ssh::server($protocol_version  = 2,
 
 	ssh::sshd_config {
 		"Protocol":                        value => $protocol_version;
-		"PermitEmptyPasswords":            value => no;
-		"ChallengeResponseAuthentication": value => no;
-		"SyslogFacility":                  value => AUTHPRIV;
-		"LogLevel":                        value => INFO;
+		"PermitEmptyPasswords":            value => "no";
+		"ChallengeResponseAuthentication": value => "no";
+		"SyslogFacility":                  value => "AUTHPRIV";
+		"LogLevel":                        value => "INFO";
 		"PasswordAuthentication":
 			value => $password_auth ? {
-				true  => yes,
-				false => no,
+				true  => "yes",
+				false => "no",
 			};
 		"X11Forwarding":
 			value => $forward_x11 ? {
-				true  => yes,
-				false => no,
+				true  => "yes",
+				false => "no",
 			};
 		"PermitRootLogin":
 			value => $permit_root_login ? {
-				true               => yes,
-				false              => no,
+				true               => "yes",
+				false              => "no",
 				"without-password" => "without-password",
 			};
 	}

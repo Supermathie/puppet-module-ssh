@@ -9,99 +9,99 @@ define ssh::sshd_config($key    = $name,
                         $add    = undef,
                         $remove = undef) {
 	case $key {
-		AllowAgentForwarding,AllowTcpForwarding,ChallengeResponseAuthentication,
-		GSSAPIAuthentication,GSSAPIKeyExchange,GSSAPICleanupCredentials,
-		GSSAPIStrictAcceptorCheck,GSSAPIStoreCredentialsOnRekey,
-		HostbasedAuthentication,HostbasedUsesNameFromPacketOnly,IgnoreRhosts,
-		IgnoreUserKnownHosts,KerberosAuthentication,KerberosGetAFSToken,
-		KerberosOrLocalPasswd,KerberosTicketCleanup,KerberosUseKuserok,
-		PasswordAuthentication,PermitEmptyPasswords,PermitUserEnvironment,
-		PrintLastLog,PrintMotd,PubkeyAuthentication,RhostsRSAAuthentication,
-		RSAAuthentication,ShowPatchLevel,StrictModes,TCPKeepAlive,UseDNS,UseLogin,
-		UsePAM,UsePrivilegeSeparation,X11Forwarding,X11UseLocalhost: {
+		"AllowAgentForwarding", "AllowTcpForwarding", "ChallengeResponseAuthentication",
+		"GSSAPIAuthentication", "GSSAPIKeyExchange", "GSSAPICleanupCredentials",
+		"GSSAPIStrictAcceptorCheck", "GSSAPIStoreCredentialsOnRekey",
+		"HostbasedAuthentication", "HostbasedUsesNameFromPacketOnly", "IgnoreRhosts",
+		"IgnoreUserKnownHosts", "KerberosAuthentication", "KerberosGetAFSToken",
+		"KerberosOrLocalPasswd", "KerberosTicketCleanup", "KerberosUseKuserok",
+		"PasswordAuthentication", "PermitEmptyPasswords", "PermitUserEnvironment",
+		"PrintLastLog", "PrintMotd", "PubkeyAuthentication", "RhostsRSAAuthentication",
+		"RSAAuthentication", "ShowPatchLevel", "StrictModes", "TCPKeepAlive", "UseDNS", "UseLogin",
+		"UsePAM", "UsePrivilegeSeparation", "X11Forwarding", "X11UseLocalhost": {
 			$multivalued = false
-			if $value and $value !~ /^(yes|no)$/ {
+			if $value and "$value" !~ /^(yes|no)$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		AddressFamily: {
+		"AddressFamily": {
 			$multivalued = false
-			if $value and $value !~ /^(inet6?|any)$/ {
+			if $value and "$value" !~ /^(inet6?|any)$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		Compression: {
+		"Compression": {
 			$multivalued = false
-			if $value and $value !~ /^(yes|no|delayed)$/ {
+			if $value and "$value" !~ /^(yes|no|delayed)$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		GatewayPorts: {
+		"GatewayPorts": {
 			$multivalued = false
-			if $value and $value !~ /^(yes|no|clientspecified)$/ {
+			if $value and "$value" !~ /^(yes|no|clientspecified)$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		PermitRootLogin: {
+		"PermitRootLogin": {
 			$multivalued = false
-			if $value and $value !~ /^(yes|no|without-password|forced-commands-only)$/ {
+			if $value and "$value" !~ /^(yes|no|without-password|forced-commands-only)$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		PermitTunnel: {
+		"PermitTunnel": {
 			$multivalued = false
-			if $value and $value !~ /^(yes|no|point-to-point|ethernet)$/ {
+			if $value and "$value" !~ /^(yes|no|point-to-point|ethernet)$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		ClientAliveCountMax,ClientAliveInterval,KeyRegenerationInterval,
-		LoginGraceTime,MaxAuthTries,MaxSessions,MaxStartups,Port,
-		ServerKeyBits,X11DisplayOffset: {
+		"ClientAliveCountMax", "ClientAliveInterval", "KeyRegenerationInterval",
+		"LoginGraceTime", "MaxAuthTries", "MaxSessions", "MaxStartups", "Port",
+		"ServerKeyBits", "X11DisplayOffset": {
 			$multivalued = false
-			if $value and $value !~ /^\d+$/ {
+			if $value and "$value" !~ /^\d+$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		LogLevel: {
+		"LogLevel": {
 			$multivalued = false
-			if $value and $value !~ /^(QUIET|FATAL|ERROR|INFO|VERBOSE|DEBUG[123]?)$/ {
+			if $value and "$value" !~ /^(QUIET|FATAL|ERROR|INFO|VERBOSE|DEBUG[123]?)$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		SyslogFacility: {
+		"SyslogFacility": {
 			$multivalued = false
-			if $value and $value !~ /^(DAEMON|USER|AUTH(PRIV)?|LOCAL[0-7])$/ {
+			if $value and "$value" !~ /^(DAEMON|USER|AUTH(PRIV)?|LOCAL[0-7])$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		Protocol: {
+		"Protocol": {
 			$multivalued = false
-			if $value and $value !~ /^\d+(,\d+)*$/ {
+			if $value and "$value" !~ /^\d+(,\d+)*$/ {
 				fail("Invalid value for ${key}: ${value}")
 			}
 		}
-		AcceptEnv: {
+		"AcceptEnv": {
 			$multivalued = true
-			if $add and $add !~ /^[\w*?]+$/ {
+			if $add and "$add" !~ /^[\w*?]+$/ {
 				fail("Invalid value for ${key}: ${add}")
 			}
-			if $remove and $remove !~ /^[\w*?]+$/ {
+			if $remove and "$remove" !~ /^[\w*?]+$/ {
 				fail("Invalid value for ${key}: ${remove}")
 			}
 		}
 		/^(Allow|Deny)(Groups|Users)$/: {
 			$multivalued = true
-			if $add and $add !~ /^[\w.-]+$/ {
+			if $add and "$add" !~ /^[\w.-]+$/ {
 				fail("Invalid value for ${key}: ${add}")
 			}
-			if $remove and $remove !~ /^[\w.-]+$/ {
+			if $remove and "$remove" !~ /^[\w.-]+$/ {
 				fail("Invalid value for ${key}: ${remove}")
 			}
 		}
-		AuthorizedKeysFile,AuthorizedPrincipalsFile,Banner,Ciphers,ForceCommand,
-		HostCertificate,HostKey,KexAlgorithms,ListenAddress,MACs,PermitOpen,
-		PidFile,RevokedKeys,AuthorizedKeysCommand,AuthorizedKeysCommandRunAs,
-		TrustedUserCAKeys,XAuthLocation: {
+		"AuthorizedKeysFile", "AuthorizedPrincipalsFile", "Banner", "Ciphers", "ForceCommand",
+		"HostCertificate", "HostKey", "KexAlgorithms", "ListenAddress", "MACs", "PermitOpen",
+		"PidFile", "RevokedKeys", "AuthorizedKeysCommand", "AuthorizedKeysCommandRunAs",
+		"TrustedUserCAKeys", "XAuthLocation": {
 			# FIXME: Validation
 			$multivalued = false
 		}

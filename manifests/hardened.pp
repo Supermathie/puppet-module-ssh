@@ -4,8 +4,8 @@
 # Based on https://stribika.github.io/2015/01/04/secure-secure-shell.html
 #
 class ssh::hardened {
-	if $openssh_server_version_major < 6 or
-	   ($openssh_server_version_major == 6 and $openssh_server_version_minor < 4) {
+	if 0 + $::openssh_server_version_major < 6 or
+	   (0 + $::openssh_server_version_major == 6 and 0 + $::openssh_server_version_minor < 4) {
 		warning "OpenSSH v6.4 or greater is required for hardening"
 	} else {
 		Exec {

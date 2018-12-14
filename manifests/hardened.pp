@@ -52,7 +52,7 @@ class ssh::hardened {
 			source => "puppet:///modules/ssh/etc/ssh/moduli",
 			owner  => "root",
 			group  => "root",
-			mode   => 0444,
+			mode   => "0444",
 			notify => Service["ssh"],
 		}
 	}
